@@ -20,7 +20,7 @@ pipeline {
 		}
 	}
 
-	stage('Deploy MOTD') {
+	stage('Deploy Website') {
 		steps {
 		   sh '''
 		   cd /var/lib/jenkins/ansible-lab
