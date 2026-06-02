@@ -1,0 +1,13 @@
+---
+- name: Create Deploy User
+  hosts: linux
+  become: yes
+
+  tasks:
+
+    - name: Create deployuser
+      user: 
+        name: deployuser
+        shell: /bin/bash
+        state: present
+

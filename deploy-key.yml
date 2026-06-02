@@ -1,0 +1,21 @@
+---
+- name: Deploy SSH key
+  hosts: linux
+  become: yes
+
+  tasks:
+
+    - name: Create .ssh directory
+      file: 
+        path: /home/deployuser/.ssh
+        state: directory
+        owner: deployuser
+        group: deployuser
+        mode: '0700'
+
+    - name: Install public key
+      authorized_key:
+        user: deployuser
+        state: present
+        key: "{{ lookup('file', 'files/deployuser_ed25519.pub') }}"
+
