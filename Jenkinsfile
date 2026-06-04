@@ -10,20 +10,22 @@ pipeline {
 		}
 	}
 
-	stage('Ansible Ping') {
-		steps { 
-		   sh '''
-		   ansible linux -i inventory.ini -m ping
-		   '''
-		}
-	}
+stage('Ansible Ping') {
+    steps {
+        sh '''
+        ansible linux -i inventory.ini -m ping --vault-password-file /var/lib/jenkins/.vault_pass
+        '''
+    }
+}
 
-	stage('Deploy Website') {
-		steps {
-		   sh '''
-		   ansible-playbook -i inventory.ini deploy-website.yml
-		   '''
-		}
-	}
+stage('Deploy Website') {
+    steps {
+        sh '''
+        ansible-playbook -i inventory.ini deploy-website.yml --vault-password-file /var/lib/jenkins/.vault_pass
+        '''
+    }
+}
+
+
    }
 }
