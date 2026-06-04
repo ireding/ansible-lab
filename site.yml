@@ -1,0 +1,11 @@
+---
+- name: Full Server Deployment
+  hosts: linux
+  become: yes
+
+  roles:
+    - motd
+    - nginx
+    - vault
+    - docker
+

@@ -1,0 +1,7 @@
+---
+- name: Create vault demo file
+  copy: 
+    content: "{{ lab_secret }}"
+    dest: /tmp/vault-demo.txt
+    mode: '0644'
+

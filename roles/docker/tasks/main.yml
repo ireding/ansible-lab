@@ -1,0 +1,21 @@
+---
+- name: Install Docker
+  apt: 
+    name: docker.io
+    state: present
+    update_cache: yes
+
+- name: Start Docker
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Deploy NGINX Container
+  community.docker.docker_container:
+    name: nginx-demo
+    image: nginx:latest
+    state: started
+    restart_policy: always
+    published_ports: 
+      - "8081:80" 
